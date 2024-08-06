@@ -24,7 +24,7 @@ class EvaluationController extends Controller
      */
     public function create()
     {
-        //
+        // 
     }
 
     /**
@@ -32,7 +32,12 @@ class EvaluationController extends Controller
      */
     public function store(StoreEvaluationRequest $request)
     {
-        //
+        $validatedData = $request->validated();
+
+        // Créer une nouvelle évaluation
+        $evaluation = Evaluation::create($validatedData);
+        return $this->Response('evaluation faite avec succes',  $evaluation);
+
     }
 
     /**
