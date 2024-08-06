@@ -61,7 +61,20 @@ class EvaluationController extends Controller
      */
     public function update(UpdateEvaluationRequest $request, Evaluation $evaluation)
     {
-        //
+        // Récupérer l'évaluation à modifier
+        // Mettre à jour l'évaluation avec les données validées
+    $evaluation->update($request->validated());
+
+    // Retourner une réponse JSON confirmant la mise à jour
+    return response()->json([
+        'success' => true,
+        'message' => 'Évaluation modifiée avec succès',
+        'data' => $evaluation
+    ]);
+
+        return $this->Response('evaluation modifiee avec succes',  $evaluation);
+
+
     }
 
     /**
