@@ -8,10 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Matiere;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
 
 
-class User extends Authenticatable
+
+class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable,SoftDeletes;
 
@@ -47,5 +49,20 @@ class User extends Authenticatable
 
     public function matieres(){
         return $this->hasmany(Matiere::class);
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+ 
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }
