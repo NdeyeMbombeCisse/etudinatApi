@@ -13,7 +13,10 @@ class EvaluationController extends Controller
      */
     public function index()
     {
-        //
+        // $evaluations = Evaluation::with(['user', 'matiere'])->get();
+        $evaluation = Evaluation::all();
+        return $this->Response('liste des evaluations', $evaluation);
+    
     }
 
     /**
