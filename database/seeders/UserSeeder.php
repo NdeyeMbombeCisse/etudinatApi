@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             [
                 'nom' => "Biteye",
                 'prenom' => "Ndeye",
-                'email' => "ndeye@gmail.com",
+                'email' => "ndeyematy@gmail.com",
                 "role" => "admin",
                 "date_naissance"=>"2002-12-12",
                 "adresse"=>"ziguinchor",
