@@ -23,7 +23,7 @@
         "multipart/form-data"
     ],
     "paths": {
-        "/api/evaluations/3": {
+        "/api/evaluations/{id}": {
             "put": {
                 "summary": "modifier evaluation",
                 "description": "",
@@ -57,27 +57,12 @@
                     }
                 },
                 "tags": [
-                    "My Collection"
+                    "Evaluation"
                 ],
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "date",
-                        "type": "string"
-                    },
-                    {
-                        "in": "path",
-                        "name": "matiere_id",
-                        "type": "string"
-                    },
-                    {
-                        "in": "path",
-                        "name": "user_id",
-                        "type": "string"
-                    },
-                    {
-                        "in": "path",
-                        "name": "valeur",
+                        "name": "id",
                         "type": "string"
                     },
                     {
@@ -86,9 +71,7 @@
                         "type": "string"
                     }
                 ]
-            }
-        },
-        "/api/evaluations/5": {
+            },
             "delete": {
                 "summary": "sup Evaluation",
                 "description": "",
@@ -131,9 +114,14 @@
                     }
                 },
                 "tags": [
-                    "My Collection"
+                    "Evaluation"
                 ],
                 "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "string"
+                    },
                     {
                         "in": "header",
                         "name": "User-Agent",
@@ -185,35 +173,44 @@
                     }
                 },
                 "tags": [
-                    "My Collection"
+                    "Evaluation"
                 ],
                 "parameters": [
-                    {
-                        "in": "path",
-                        "name": "date",
-                        "type": "string"
-                    },
-                    {
-                        "in": "path",
-                        "name": "user_id",
-                        "type": "string"
-                    },
-                    {
-                        "in": "path",
-                        "name": "matiere_id",
-                        "type": "string"
-                    },
-                    {
-                        "in": "path",
-                        "name": "valeur",
-                        "type": "string"
-                    },
                     {
                         "in": "header",
                         "name": "User-Agent",
                         "type": "string"
                     }
-                ]
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "valeur": {
+                                        "type": "string"
+                                    },
+                                    "user_id": {
+                                        "type": "string"
+                                    },
+                                    "matiere_id": {
+                                        "type": "string"
+                                    },
+                                    "date": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "valeur": "12",
+                                "user_id": "9",
+                                "matiere_id": "4",
+                                "date": "2003-12-2"
+                            }
+                        }
+                    }
+                }
             },
             "get": {
                 "summary": "afficheEvaluation",
@@ -248,7 +245,7 @@
                     }
                 },
                 "tags": [
-                    "My Collection"
+                    "Evaluation"
                 ],
                 "parameters": [
                     {
@@ -293,7 +290,7 @@
                     }
                 },
                 "tags": [
-                    "My Collection"
+                    "etudiant"
                 ],
                 "parameters": [
                     {
@@ -304,7 +301,7 @@
                 ]
             }
         },
-        "/api/forceDelete/16": {
+        "/api/forceDelete/{id}": {
             "get": {
                 "summary": "forcedelete",
                 "description": "",
@@ -338,9 +335,14 @@
                     }
                 },
                 "tags": [
-                    "My Collection"
+                    "etudiant"
                 ],
                 "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "string"
+                    },
                     {
                         "in": "header",
                         "name": "User-Agent",
@@ -349,7 +351,7 @@
                 ]
             }
         },
-        "/api/restore/16": {
+        "/api/restore/{id}": {
             "get": {
                 "summary": "Restaurer etudiant",
                 "description": "",
@@ -383,7 +385,7 @@
                     }
                 },
                 "tags": [
-                    "My Collection"
+                    "etudiant"
                 ],
                 "parameters": [
                     {
@@ -394,7 +396,7 @@
                 ]
             }
         },
-        "/api/etudiants/16": {
+        "/api/etudiants/{id}": {
             "delete": {
                 "summary": "supprimer etudiant",
                 "description": "",
@@ -437,9 +439,14 @@
                     }
                 },
                 "tags": [
-                    "My Collection"
+                    "etudiant"
                 ],
                 "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "string"
+                    },
                     {
                         "in": "header",
                         "name": "User-Agent",
@@ -480,37 +487,12 @@
                     }
                 },
                 "tags": [
-                    "My Collection"
+                    "etudiant"
                 ],
                 "parameters": [
                     {
                         "in": "path",
-                        "name": "prenom",
-                        "type": "string"
-                    },
-                    {
-                        "in": "path",
-                        "name": "nom",
-                        "type": "string"
-                    },
-                    {
-                        "in": "path",
-                        "name": "adresse",
-                        "type": "string"
-                    },
-                    {
-                        "in": "path",
-                        "name": "matricule",
-                        "type": "string"
-                    },
-                    {
-                        "in": "path",
-                        "name": "email",
-                        "type": "string"
-                    },
-                    {
-                        "in": "path",
-                        "name": "date_naissance",
+                        "name": "id",
                         "type": "string"
                     },
                     {
@@ -518,7 +500,18 @@
                         "name": "User-Agent",
                         "type": "string"
                     }
-                ]
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            },
+                            "example": {}
+                        }
+                    }
+                }
             }
         },
         "/api/etudiants": {
@@ -564,44 +557,101 @@
                     }
                 },
                 "tags": [
-                    "My Collection"
+                    "etudiant"
                 ],
                 "parameters": [
                     {
-                        "in": "path",
-                        "name": "prenom",
+                        "in": "header",
+                        "name": "User-Agent",
                         "type": "string"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "prenom": {
+                                        "type": "string"
+                                    },
+                                    "nom": {
+                                        "type": "string"
+                                    },
+                                    "adresse": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "date_naissance": {
+                                        "type": "string"
+                                    },
+                                    "photo": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "matricule": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "prenom": "cheikh",
+                                "nom": "sane",
+                                "adresse": "keurmassar",
+                                "email": "CSSD@gmail.com",
+                                "date_naissance": "2002-12-12",
+                                "photo": {
+                                    "type": "string",
+                                    "format": "binary"
+                                },
+                                "matricule": "rnfrnfrf",
+                                "password": "passwordfg"
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "listetudiant",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": ""
+                            }
+                        }
                     },
-                    {
-                        "in": "path",
-                        "name": "nom",
-                        "type": "string"
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": ""
+                            }
+                        }
                     },
-                    {
-                        "in": "path",
-                        "name": "adresse",
-                        "type": "string"
-                    },
-                    {
-                        "in": "path",
-                        "name": "matricule",
-                        "type": "string"
-                    },
-                    {
-                        "in": "path",
-                        "name": "email",
-                        "type": "string"
-                    },
-                    {
-                        "in": "path",
-                        "name": "password",
-                        "type": "string"
-                    },
-                    {
-                        "in": "path",
-                        "name": "date_naissance",
-                        "type": "string"
-                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": ""
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "etudiant"
+                ],
+                "parameters": [
                     {
                         "in": "header",
                         "name": "User-Agent",
@@ -653,25 +703,36 @@
                     }
                 },
                 "tags": [
-                    "My Collection"
+                    "Authentification"
                 ],
                 "parameters": [
-                    {
-                        "in": "path",
-                        "name": "email",
-                        "type": "string"
-                    },
-                    {
-                        "in": "path",
-                        "name": "password",
-                        "type": "string"
-                    },
                     {
                         "in": "header",
                         "name": "User-Agent",
                         "type": "string"
                     }
-                ]
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "example": {
+                                "email": "ndeyematy@gmail.com",
+                                "password": "password"
+                            }
+                        }
+                    }
+                }
             }
         }
     }
