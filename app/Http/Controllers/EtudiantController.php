@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class EtudiantController extends Controller
 {
     // Méthode pour retourner une réponse JSON personnalisée
-    
+   
 
     /**
      * Affiche une liste des utilisateurs.
@@ -75,8 +75,16 @@ class EtudiantController extends Controller
     /**
      * Met à jour un utilisateur existant.
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
+        // Récupérer l'utilisateur à partir de l'ID
+        $user = User::find($id);
+
+        // Vérifier si l'utilisateur existe
+        if (!$user) {
+            return $this->Response('Utilisateur non trouvé', null, 404);
+        }
+
         // Validation des données
         $validator = Validator::make($request->all(), [
             'prenom' => 'required|string|max:255',
@@ -85,7 +93,7 @@ class EtudiantController extends Controller
             'matricule' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,
             'password' => 'nullable|string|min:8',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            // 'photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'date_naissance' => 'required|date',
         ]);
 
